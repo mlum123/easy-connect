@@ -134,6 +134,24 @@ const Google = {
             })
             .then((res) => {
               let text = "";
+
+              // get email sender from headers
+              let from = "";
+              for (let header of res.result.payload.headers) {
+                if (header.name === "From") {
+                  from = header.value;
+                }
+              }
+
+              // get email subject from headers
+              let subject = "";
+              for (let header of res.result.payload.headers) {
+                if (header.name === "Subject") {
+                  subject = header.value;
+                }
+              }
+
+              // get email text, or just snippet if not possible to get full text
               if (res.result.payload.parts) {
                 let msg = res.result.payload.parts[0].body.data;
                 let buff = new Buffer.from(msg, "base64");
@@ -141,7 +159,7 @@ const Google = {
               } else {
                 text = res.result.snippet;
               }
-              return text;
+              return { from, subject, text };
             });
         });
 

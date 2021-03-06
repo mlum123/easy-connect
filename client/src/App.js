@@ -3,7 +3,7 @@ import "./App.css";
 import Google from "./Google";
 import { Row, Col } from "reactstrap";
 import Contacts from "./components/Contacts";
-import Emails from "./components/Emails";
+import Accordion from "./components/Accordion";
 
 class App extends React.Component {
   constructor(props) {
@@ -50,7 +50,6 @@ class App extends React.Component {
     Google.getEmails()
       .then((emails) => {
         this.setState({ emails });
-        console.log(this.state.emails);
       })
       .catch((err) => {
         console.log(err);
@@ -102,7 +101,7 @@ class App extends React.Component {
             <Contacts contacts={this.state.contacts} />
           </Col>
           <Col xs="8">
-            <Emails emails={this.state.emails} />
+            <Accordion type="email" emails={this.state.emails} />
           </Col>
         </Row>
       </div>
