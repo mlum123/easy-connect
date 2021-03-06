@@ -2,9 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const twilio = require("twilio");
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 // Twilio requirements
-const accountSid = "ACd021887f0fa79590ea350b26c0b19863";
-const authToken = "750050e3ac4858e77a96dfbc3d58cbc8";
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = new twilio(accountSid, authToken);
 
 const app = express(); // alias
