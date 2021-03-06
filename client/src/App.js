@@ -4,7 +4,6 @@ import Google from "./Google";
 import { Row, Col } from "reactstrap";
 import Contacts from "./components/Contacts";
 import Emails from "./components/Emails";
-import Text from "./components/Text";
 
 class App extends React.Component {
   constructor(props) {

@@ -4,26 +4,24 @@ import "./Emails.css";
 
 class Emails extends React.Component {
   render() {
-    return (
+    return this.props.emails.length > 0 ? (
       <Card className="card emails">
         <ListGroup flush>
-          {this.props.emails !== [] ? (
-            <>
-              <ListGroupItem className="header">emails</ListGroupItem>
-              {this.props.emails.map((email) => {
-                return (
-                  <ListGroupItem key={email[0]} className="contact">
-                    {email.substring(0, 85)}
-                    {"..."}
-                  </ListGroupItem>
-                );
-              })}
-            </>
-          ) : (
-            ""
-          )}
+          <>
+            <ListGroupItem className="header">emails</ListGroupItem>
+            {this.props.emails.map((email) => {
+              return (
+                <ListGroupItem key={email[0]} className="contact">
+                  {email.substring(0, 85)}
+                  {"..."}
+                </ListGroupItem>
+              );
+            })}
+          </>
         </ListGroup>
       </Card>
+    ) : (
+      ""
     );
   }
 }
