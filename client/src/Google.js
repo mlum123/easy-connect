@@ -54,7 +54,6 @@ const Google = {
   updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
       Google.signedIn = true;
-      Google.getContacts();
     } else {
       Google.signedIn = false;
     }
@@ -69,10 +68,20 @@ const Google = {
       })
       .then((res) => {
         const contacts = res.result.connections;
-        console.log(contacts);
+
+        let contactsCleaned = contacts.map((contact) => {
+          return {
+            resourceName: contact.resourceName,
+            name: contact.names[0].displayName,
+            email: contact.emailAddresses[0].value,
+            phone: contact.phoneNumbers[0].value,
+          };
+        });
+        return contactsCleaned;
       })
       .catch((err) => {
         console.log(err);
+        return [];
       });
   },
 };

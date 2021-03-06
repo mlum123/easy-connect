@@ -1,14 +1,17 @@
 import React from "react";
 import "./App.css";
-import Text from "./components/Text";
 import Google from "./Google";
-import { Button } from "reactstrap";
+import { Col, Button } from "reactstrap";
+import Contacts from "./components/Contacts";
+import Text from "./components/Text";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { signedIn: false };
+    this.state = { googleSignedIn: false };
+
+    this.getContacts = this.getContacts.bind(this);
   }
 
   // Google sign in button click event handler
@@ -21,10 +24,24 @@ class App extends React.Component {
     Google.handleSignoutClick();
   }
 
+  // use Google People API to get contacts
+  getContacts() {
+    Google.getContacts()
+      .then((contacts) => {
+        this.setState({ contacts });
+        this.setState({ googleSignedIn: Google.signedIn });
+        console.log(this.state);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   // when App component is mounted,
   // use Google module to load the auth2 library and API client library
   componentDidMount() {
     Google.handleClientLoad();
+    this.getContacts();
   }
 
   render() {
@@ -52,12 +69,15 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <header>
-          {!this.state.signedIn ? authButton : null}
-          {this.state.signedIn ? signOutButton : null}
-        </header>
-        <h1>easy connect</h1>
-        <h3>talking made simple</h3>
+        <div className="title">
+          <h1>easy connect</h1>
+          <h3>talking made simple</h3>
+        </div>
+        {!this.state.googleSignedIn ? authButton : null}
+        {this.state.googleSignedIn ? signOutButton : null}
+        <Col xs="4">
+          <Contacts contacts={this.state.contacts} />
+        </Col>
       </div>
     );
   }

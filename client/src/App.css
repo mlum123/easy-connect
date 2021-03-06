@@ -1,15 +1,19 @@
 .App {
   text-align: center;
-  background: #fceed1;
+  background: #f9f9f9;
   min-height: 100vh;
-  font-family: "Nunito", sans-serif;
+  font-family: "Lato", sans-serif;
+}
+
+.title {
+  padding: 2rem 0;
+  background: #f0e5d3;
 }
 
 .App h1 {
-  padding-top: 2rem;
   font-weight: bold;
 }
 
-.App h3 {
+h3 {
   font-style: italic;
 }
