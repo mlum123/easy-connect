@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
 import Google from "./Google";
-import { Row, Col, Button } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import Contacts from "./components/Contacts";
+import Emails from "./components/Emails";
 import Text from "./components/Text";
 
 class App extends React.Component {
@@ -27,7 +28,11 @@ class App extends React.Component {
   // Google sign out button click event handler
   onHandleSignoutClick() {
     Google.handleSignoutClick();
-    this.setState({ googleSignedIn: Google.signedIn, contacts: [] });
+    this.setState({
+      googleSignedIn: Google.signedIn,
+      contacts: [],
+      emails: [],
+    });
   }
 
   // use Google People API to get contacts
@@ -93,9 +98,14 @@ class App extends React.Component {
             {this.state.googleSignedIn ? signOutButton : null}
           </div>
         </Col>
-        <Col xs="4">
-          <Contacts contacts={this.state.contacts} />
-        </Col>
+        <Row>
+          <Col xs="4">
+            <Contacts contacts={this.state.contacts} />
+          </Col>
+          <Col xs="8">
+            <Emails emails={this.state.emails} />
+          </Col>
+        </Row>
       </div>
     );
   }

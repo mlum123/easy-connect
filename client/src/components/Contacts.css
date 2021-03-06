@@ -1,8 +1,5 @@
-.contacts {
-  background: #e6e9f0 !important;
-  font-size: 1.5rem;
-  font-weight: bold;
-  font-style: italic;
+#contacts-card {
+  margin-left: 1rem;
 }
 
 h3 {
