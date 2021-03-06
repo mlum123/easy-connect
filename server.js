@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const twilio = require("twilio");
 
+// to use Twilio environment variables in .env
 const dotenv = require("dotenv");
 dotenv.config();
 
