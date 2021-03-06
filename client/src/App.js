@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Google from "./Google";
-import { Col, Button } from "reactstrap";
+import { Row, Col, Button } from "reactstrap";
 import Contacts from "./components/Contacts";
 import Text from "./components/Text";
 
@@ -9,19 +9,25 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { googleSignedIn: false };
+    this.state = { googleSignedIn: false, contacts: [], emails: [] };
 
+    this.onHandleAuthClick = this.onHandleAuthClick.bind(this);
+    this.onHandleSignoutClick = this.onHandleSignoutClick.bind(this);
     this.getContacts = this.getContacts.bind(this);
   }
 
   // Google sign in button click event handler
   onHandleAuthClick() {
     Google.handleAuthClick();
+    this.setState({ googleSignedIn: Google.signedIn });
+    this.getContacts();
+    this.getEmails();
   }
 
   // Google sign out button click event handler
   onHandleSignoutClick() {
     Google.handleSignoutClick();
+    this.setState({ googleSignedIn: Google.signedIn, contacts: [] });
   }
 
   // use Google People API to get contacts
@@ -29,8 +35,18 @@ class App extends React.Component {
     Google.getContacts()
       .then((contacts) => {
         this.setState({ contacts });
-        this.setState({ googleSignedIn: Google.signedIn });
-        console.log(this.state);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  // use Gmail API to get emails
+  getEmails() {
+    Google.getEmails()
+      .then((emails) => {
+        this.setState({ emails });
+        console.log(this.state.emails);
       })
       .catch((err) => {
         console.log(err);
@@ -41,7 +57,6 @@ class App extends React.Component {
   // use Google module to load the auth2 library and API client library
   componentDidMount() {
     Google.handleClientLoad();
-    this.getContacts();
   }
 
   render() {
@@ -49,32 +64,35 @@ class App extends React.Component {
     // only display authButton (sign in) if user isn't signed in yet
     // only display signOutButton if user is signed in with Google
     let authButton = (
-      <Button
+      <button
         className="google-button"
         id="authorize-button"
         onClick={this.onHandleAuthClick}
       >
         sign in with google
-      </Button>
+      </button>
     );
     let signOutButton = (
-      <Button
+      <button
         className="google-button"
         id="signout-button"
         onClick={this.onHandleSignoutClick}
       >
         sign out
-      </Button>
+      </button>
     );
 
     return (
       <div className="App">
-        <div className="title">
-          <h1>easy connect</h1>
-          <h3>talking made simple</h3>
-        </div>
-        {!this.state.googleSignedIn ? authButton : null}
-        {this.state.googleSignedIn ? signOutButton : null}
+        <div className="skewed"></div>
+        <Col>
+          <div className="title">
+            <h1>easy connect</h1>
+            <h3>talking made simple</h3>
+            {!this.state.googleSignedIn ? authButton : null}
+            {this.state.googleSignedIn ? signOutButton : null}
+          </div>
+        </Col>
         <Col xs="4">
           <Contacts contacts={this.state.contacts} />
         </Col>

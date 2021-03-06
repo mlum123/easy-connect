@@ -1,7 +1,10 @@
-.contact {
-  background: #6a6a6a;
-  color: #f1f1f1;
-  margin: 0.2rem;
-  border: none;
-  border-radius: 0.2rem;
+.contacts {
+  background: #e6e9f0 !important;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+h3 {
+  padding-top: 1rem;
 }

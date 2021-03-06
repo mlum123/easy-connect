@@ -4,8 +4,11 @@ const CLIENT_ID =
   "337510426214-vr92q2qdgetu51134m3trr1oki5spdus.apps.googleusercontent.com";
 const DISCOVERY_DOCS = [
   "https://people.googleapis.com/$discovery/rest?version=v1",
+  "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
+  "https://gmail.googleapis.com/$discovery/rest?version=v1",
 ];
-const SCOPES = "https://www.googleapis.com/auth/contacts";
+const SCOPES =
+  "https://www.googleapis.com/auth/contacts https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/gmail.modify";
 
 let gapi = window.gapi;
 
@@ -78,6 +81,76 @@ const Google = {
           };
         });
         return contactsCleaned;
+      })
+      .catch((err) => {
+        console.log(err);
+        return [];
+      });
+  },
+
+  // Get upcoming Zoom and Google Meet events on user's household calendar
+  getEvents() {
+    // use timeMin to specify only getting events that happened / are happening on Monday forward
+    return gapi.client.calendar.events
+      .list({
+        calendarId: "primary",
+        showDeleted: false,
+        singleEvents: true,
+        orderBy: "startTime",
+      })
+      .then((res) => {
+        const events = res.result.items;
+
+        if (events.length > 0) {
+          // use filter to only get Zoom and Google Meet events
+          return events.filter((event, i) => {
+            let eventTime = event.start.dateTime;
+
+            return true;
+          });
+        } else {
+          console.log("No upcoming events found.");
+          return [];
+        }
+      });
+  },
+
+  // Get user's emails
+  getEmails() {
+    return gapi.client.gmail.users.messages
+      .list({
+        userId: "me",
+      })
+      .then((res) => {
+        const messages = res;
+        return messages;
+      })
+      .then(async (messages) => {
+        let promises = messages.result.messages.map(async (message) => {
+          return await gapi.client.gmail.users.messages
+            .get({
+              userId: "me",
+              id: message.id,
+            })
+            .then((res) => {
+              let text = "";
+              if (res.result.payload.parts) {
+                let msg = res.result.payload.parts[0].body.data;
+                let buff = new Buffer.from(msg, "base64");
+                text = buff.toString("ascii");
+              } else {
+                text = res.result.snippet;
+              }
+              return text;
+            });
+        });
+
+        let emails = [];
+        for await (let val of promises) {
+          emails.push(val);
+        }
+
+        return emails;
       })
       .catch((err) => {
         console.log(err);
