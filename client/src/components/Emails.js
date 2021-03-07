@@ -14,8 +14,8 @@ class Emails extends React.Component {
       <>
         {" "}
         {this.props.emails.map((email) => {
-          return email !== undefined ? (
-            <ListGroupItem key={email.subject}>
+          return (
+            <ListGroupItem className="email" key={email.subject}>
               <Row>
                 <Col xs="10">
                   <strong>
@@ -31,8 +31,6 @@ class Emails extends React.Component {
                 </Col>
               </Row>
             </ListGroupItem>
-          ) : (
-            ""
           );
         })}
       </>

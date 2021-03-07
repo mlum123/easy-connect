@@ -21,10 +21,9 @@ class EmailModal extends React.Component {
 
     this.state = {
       modal: false,
-      activeEmail: {},
-      to: "",
-      subject: "",
-      email: "",
+      to: this.props.email.from.split(" ").pop(),
+      subject: "Re: " + this.props.email.subject,
+      email: "type your email here!",
     };
 
     this.toggle = this.toggle.bind(this);
@@ -77,7 +76,7 @@ class EmailModal extends React.Component {
                 <Input
                   type="text"
                   name="to"
-                  defaultValue={this.props.email.from.split(" ").pop()}
+                  placeholder={this.state.to}
                   id="to"
                   onChange={this.handleChange}
                 ></Input>
@@ -87,7 +86,7 @@ class EmailModal extends React.Component {
                 <Input
                   type="text"
                   name="subject"
-                  defaultValue="enter subject"
+                  placeholder={this.state.subject}
                   id="subject"
                   onChange={this.handleChange}
                 ></Input>
@@ -97,7 +96,7 @@ class EmailModal extends React.Component {
                 <Input
                   type="textarea"
                   name="email"
-                  defaultValue="type your email here!"
+                  placeholder={this.state.email}
                   id="email"
                   onChange={this.handleChange}
                 ></Input>

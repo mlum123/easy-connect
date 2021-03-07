@@ -2,7 +2,7 @@
 // to display emails, upcoming calls, etc.
 
 import React from "react";
-import { Collapse, Card, ListGroup, ListGroupItem } from "reactstrap";
+import { Collapse, ListGroup } from "reactstrap";
 import Emails from "./Emails";
 import "./Accordion.css";
 
@@ -23,22 +23,18 @@ class Accordion extends React.Component {
   render() {
     // if this is an Accordion for email (check using the props type), display email Accordion
     return this.props.type === "email" && this.props.emails.length > 0 ? (
-      <Card className="card">
-        <ListGroup flush>
-          <>
-            <ListGroupItem className="header">
-              {this.props.type}
-              <i
-                className="fas fa-angle-down accordion-button"
-                onClick={this.toggle}
-              ></i>
-            </ListGroupItem>
-            <Collapse isOpen={this.state.isOpen}>
-              <Emails emails={this.props.emails} />
-            </Collapse>
-          </>
-        </ListGroup>
-      </Card>
+      <ListGroup flush className="card">
+        <div className="header">
+          {this.props.type}
+          <i
+            className="fas fa-angle-down accordion-button"
+            onClick={this.toggle}
+          ></i>
+        </div>
+        <Collapse isOpen={this.state.isOpen}>
+          <Emails emails={this.props.emails} />
+        </Collapse>
+      </ListGroup>
     ) : (
       ""
     );

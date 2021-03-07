@@ -1,5 +1,10 @@
 /* Emails component styling */
 
+.email {
+  border-left: none !important;
+  border-right: none !important;
+}
+
 .email-modal {
   min-width: 800px;
 }

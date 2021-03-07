@@ -118,12 +118,14 @@ const Google = {
       });
   },
 
-  // Use Gmail API to get user's emails
+  // Use Gmail API to get user's inbox emails
+  // only get email if the email is labeled inbox (we don't want sent emails)
   getEmails() {
-    // TODO - limit num of emails
     return gapi.client.gmail.users.messages
       .list({
         userId: "me",
+        labelIds: "INBOX",
+        maxResults: 5,
       })
       .then((res) => {
         const messages = res;
@@ -138,40 +140,33 @@ const Google = {
               id: message.id,
             })
             .then((res) => {
-              // only get email from, subject, and text if the email is labeled inbox
-              // we don't want sent emails
-              // emails not in inbox will have from, subject, text left undefined
-              // later, in Emails component, we'll check if email is undefined before displaying it
-              // undefined emails don't get displayed
-              if (res.result.labelIds.includes("INBOX")) {
-                let text = "";
+              let text = "";
 
-                // get email sender from headers
-                let from = "";
-                for (let header of res.result.payload.headers) {
-                  if (header.name === "From") {
-                    from = header.value;
-                  }
+              // get email sender from headers
+              let from = "";
+              for (let header of res.result.payload.headers) {
+                if (header.name === "From") {
+                  from = header.value;
                 }
-
-                // get email subject from headers
-                let subject = "";
-                for (let header of res.result.payload.headers) {
-                  if (header.name === "Subject") {
-                    subject = header.value;
-                  }
-                }
-
-                // get email text, or just snippet if not possible to get full text
-                if (res.result.payload.parts) {
-                  let msg = res.result.payload.parts[0].body.data;
-                  let buff = new Buffer.from(msg, "base64");
-                  text = buff.toString("ascii");
-                } else {
-                  text = res.result.snippet;
-                }
-                return { from, subject, text };
               }
+
+              // get email subject from headers
+              let subject = "";
+              for (let header of res.result.payload.headers) {
+                if (header.name === "Subject") {
+                  subject = header.value;
+                }
+              }
+
+              // get email text, or just snippet if not possible to get full text
+              if (res.result.payload.parts) {
+                let msg = res.result.payload.parts[0].body.data;
+                let buff = new Buffer.from(msg, "base64");
+                text = buff.toString("ascii");
+              } else {
+                text = res.result.snippet;
+              }
+              return { from, subject, text };
             });
         });
 
@@ -214,10 +209,24 @@ const Google = {
     return encodedMail;
   },
 
+  // TODO: this doesn't work - get "from" email from logged-in user's profile
+  getUserEmail() {
+    return gapi.client.gmail.users
+      .getProfile({
+        userId: "me",
+      })
+      .then((res) => {
+        console.log(res.result.emailAddress);
+        return res.result.emailAddress;
+      });
+  },
+
   // Use Gmail API to send an email
   sendEmail(to, subject, message) {
-    // TODO - change hardcoded "from" email to email pulled from profile
-    let raw = Google.makeBody("mlumtest@gmail.com", to, subject, message);
+    // TODO: get "from" email from logged-in user's profile
+    let from = "mlumtest@gmail.com";
+
+    let raw = Google.makeBody(from, to, subject, message);
 
     gapi.client.gmail.users.messages
       .send({
