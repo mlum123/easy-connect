@@ -8,7 +8,7 @@ _Demo Video: BLANK_
 
 With many working and learning virtually due to the coronavirus pandemic, we're using more digital platforms than ever to stay connected — there's Zoom, Google Meet, texting, and GroupMe, among a plethora of other services. It can be confusing, time-consuming, and difficult to keep up to date on all of these apps, especially for those like the older generation who may not catch onto new technologies easily and are feeling the most isolated due to their vulnerability to COVID-19.
 
-That's where Simply Connect comes in: Simply Connect is a web application made with React and Express for SF Hacks 2021. Simply Connect uses OAuth2.0 authentication to allow users to sign in via their Google accounts, giving Simply Connect access to their Google Contacts, Gmail emails, and Google Calendars.
+That's where Simply Connect comes in: Simply Connect is a web application made with React and Express for SF Hacks 2021, and it's a one-stop communications hub for all your digital platforms. Simply Connect uses OAuth2.0 authentication to allow users to sign in via their Google accounts, giving Simply Connect access to their Google Contacts, Gmail emails, and Google Calendars.
 
 Once you log in, Simply Connect displays your Google Contacts using the Google People API. You're able to filter your contacts by name to find phone numbers and emails. You can also send texts to any phone number from the Simply Connect web app via the Twilio SMS API, which is really helpful for PC users who don't have quick access to texting on their laptops and may need to send a quick text while they're in a virtual meeting.
 
