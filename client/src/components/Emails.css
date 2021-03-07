@@ -1,16 +1,13 @@
-.email-button {
-  background: #431c5d;
-  width: 30%;
-  color: white;
-  border: none;
-  border-radius: 0.2rem;
-  float: right;
-  font-size: 1.1rem;
-  padding: 0.4rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
+/* Emails component styling */
+
+.email-modal {
+  min-width: 800px;
 }
 
-.email-button:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+.from {
+  font-size: 1rem;
+}
+
+.send-email-form {
+  min-width: 760px;
 }

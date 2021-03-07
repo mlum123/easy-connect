@@ -1,13 +1,21 @@
+// Emails component displays all emails in user's inbox
+// check if email is undefined before displaying it
+// undefined emails don't get displayed
+// if you go to Google module, you'll see that undefined emails were the ones not labeled inbox
+
 import React from "react";
-import { Collapse, Card, ListGroup, ListGroupItem, Row, Col } from "reactstrap";
+import { ListGroupItem, Row, Col } from "reactstrap";
+import EmailModal from "./EmailModal";
 import "./Emails.css";
 
 class Emails extends React.Component {
   render() {
-    return this.props.emails.length > 0
-      ? this.props.emails.map((email) => {
-          return (
-            <ListGroupItem key={email[0]}>
+    return this.props.emails.length > 0 ? (
+      <>
+        {" "}
+        {this.props.emails.map((email) => {
+          return email !== undefined ? (
+            <ListGroupItem key={email.subject}>
               <Row>
                 <Col xs="10">
                   <strong>
@@ -19,15 +27,18 @@ class Emails extends React.Component {
                   {"..."}
                 </Col>
                 <Col xs="2">
-                  <button className="email-button">
-                    <i className="fas fa-angle-double-right"></i>
-                  </button>
+                  <EmailModal email={email} />
                 </Col>
               </Row>
             </ListGroupItem>
+          ) : (
+            ""
           );
-        })
-      : "";
+        })}
+      </>
+    ) : (
+      ""
+    );
   }
 }
 

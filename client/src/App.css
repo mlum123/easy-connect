@@ -1,3 +1,5 @@
+/* App component styling */
+
 .App {
   text-align: center;
   background: #f1f1f1;
@@ -11,6 +13,8 @@
 
 .App h1 {
   font-weight: bold;
+  float: left;
+  margin-left: 1rem;
 }
 
 h3 {
@@ -21,6 +25,8 @@ h3 {
   background-color: #e6e9f0;
   border: none;
   padding: 0.5rem;
+  float: right;
+  margin-right: 1rem;
   margin-top: 1rem;
   border-radius: 0.2rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -44,4 +50,22 @@ h3 {
   z-index: 0;
   transform: skewY(-10deg);
   transform-origin: top left;
+}
+
+/* custom purple button for send text, see more of email, reply to email, etc. */
+.custom-button {
+  background: #431c5d;
+  width: 30%;
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  float: right;
+  font-size: 1.1rem;
+  padding: 0.4rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.custom-button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }

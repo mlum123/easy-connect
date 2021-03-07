@@ -1,3 +1,5 @@
+// server.js sets up Express backend to use Twilio SMS API
+// to send texts to specified phone nums from my Twilio phone number thru web app
 const express = require("express");
 const cors = require("cors");
 const twilio = require("twilio");
@@ -7,6 +9,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // Twilio requirements
+// get Twilio account info from environment variables in .env file
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = new twilio(accountSid, authToken);
@@ -30,7 +33,7 @@ app.get("/send-text", (req, res) => {
     .create({
       body: textmessage,
       to: "+1" + recipient,
-      from: "+17089984991", // from Twilio
+      from: "+17089984991", // from my Twilio phone num
     })
     .then((message) => console.log(message.body));
 });

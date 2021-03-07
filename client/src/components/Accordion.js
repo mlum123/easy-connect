@@ -1,7 +1,10 @@
+// Accordion component that toggles to collapse and open
+// to display emails, upcoming calls, etc.
+
 import React from "react";
 import { Collapse, Card, ListGroup, ListGroupItem } from "reactstrap";
-import "./Accordion.css";
 import Emails from "./Emails";
+import "./Accordion.css";
 
 class Accordion extends React.Component {
   constructor(props) {
@@ -12,11 +15,13 @@ class Accordion extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  // toggle whether Accordion is open or closed
   toggle() {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
   render() {
+    // if this is an Accordion for email (check using the props type), display email Accordion
     return this.props.type === "email" && this.props.emails.length > 0 ? (
       <Card className="card">
         <ListGroup flush>

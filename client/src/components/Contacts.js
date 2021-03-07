@@ -1,3 +1,6 @@
+// Contacts component displaying contacts list from Google
+// and send text button + modal for sending texts via Twilio SMS API
+
 import React from "react";
 import {
   ListGroup,
@@ -6,8 +9,8 @@ import {
   ModalHeader,
   ModalBody,
 } from "reactstrap";
-import "./Contacts.css";
 import Text from "./Text";
+import "./Contacts.css";
 
 class Contacts extends React.Component {
   constructor(props) {
@@ -17,6 +20,7 @@ class Contacts extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  // toggles whether send text (via Twilio SMS API) modal is open or not
   toggle() {
     this.setState({ modal: !this.state.modal });
   }
@@ -27,7 +31,7 @@ class Contacts extends React.Component {
         <>
           <ListGroupItem className="header">
             contacts
-            <button className="text-button" onClick={this.toggle}>
+            <button className="custom-button" onClick={this.toggle}>
               send text
             </button>
             <Modal isOpen={this.state.modal} toggle={this.toggle}>

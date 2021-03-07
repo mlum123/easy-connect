@@ -1,9 +1,11 @@
+// main App component for displaying entire page
+
 import React from "react";
-import "./App.css";
-import Google from "./Google";
 import { Row, Col } from "reactstrap";
 import Contacts from "./components/Contacts";
 import Accordion from "./components/Accordion";
+import Google from "./Google";
+import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +36,7 @@ class App extends React.Component {
     });
   }
 
-  // use Google People API to get contacts
+  // call Google module function to use People API to get Google Contacts
   getContacts() {
     Google.getContacts()
       .then((contacts) => {
@@ -45,7 +47,7 @@ class App extends React.Component {
       });
   }
 
-  // use Gmail API to get emails
+  // call Google module function to use Gmail API to get inbox emails
   getEmails() {
     Google.getEmails()
       .then((emails) => {
@@ -88,13 +90,19 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="skewed"></div>
-        <Col>
-          <div className="title">
-            <h1>easy connect</h1>
-            <h3>talking made simple</h3>
-            {!this.state.googleSignedIn ? authButton : null}
-            {this.state.googleSignedIn ? signOutButton : null}
-          </div>
+        <Col className="title">
+          <Row>
+            <Col xs="7">
+              <h1>easy connect</h1>
+            </Col>
+            <Col xs="3">
+              <h3>talking made simple</h3>
+            </Col>
+            <Col xs="2">
+              {!this.state.googleSignedIn ? authButton : null}
+              {this.state.googleSignedIn ? signOutButton : null}
+            </Col>
+          </Row>
         </Col>
         <Row>
           <Col xs="4">

@@ -1,3 +1,6 @@
+// Text component with form to send text to phone num via Twilio SMS API
+// uses Express backend API in server.js to communicate with Twilio SMS API to send text
+
 import React from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 
@@ -15,6 +18,7 @@ class Text extends React.Component {
     this.sendText = this.sendText.bind(this);
   }
 
+  // send text using Express backend API in server.js that talks with Twilio SMS API
   sendText() {
     const { text } = this.state;
 
@@ -57,7 +61,7 @@ class Text extends React.Component {
             }
           />
         </FormGroup>
-        <button className="text-button" onClick={this.sendText}>
+        <button className="custom-button" onClick={this.sendText}>
           send text
         </button>
       </Form>
