@@ -142,8 +142,6 @@ const Google = {
               id: message.id,
             })
             .then((res) => {
-              let text = "";
-
               // get email sender from headers
               let from = "";
               for (let header of res.result.payload.headers) {
@@ -161,6 +159,7 @@ const Google = {
               }
 
               // get email text, or just snippet if not possible to get full text
+              let text = "";
               if (res.result.payload.parts) {
                 let msg = res.result.payload.parts[0].body.data;
                 let buff = new Buffer.from(msg, "base64");
@@ -168,7 +167,14 @@ const Google = {
               } else {
                 text = res.result.snippet;
               }
-              return { from, subject, text };
+
+              // get email unread status
+              let unread = false;
+              if (res.result.labelIds.includes("UNREAD")) {
+                unread = true;
+              }
+
+              return { from, subject, text, unread };
             });
         });
 

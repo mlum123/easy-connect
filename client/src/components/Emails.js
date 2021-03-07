@@ -1,7 +1,7 @@
 // Emails component displays all emails in user's inbox
 
 import React from "react";
-import { ListGroupItem, Row, Col } from "reactstrap";
+import { ListGroupItem, Row, Col, Badge } from "reactstrap";
 import EmailModal from "./EmailModal";
 import "./Emails.css";
 
@@ -14,7 +14,7 @@ class Emails extends React.Component {
           return (
             <ListGroupItem className="item" key={email.subject}>
               <Row>
-                <Col xs="10">
+                <Col xs="9">
                   <strong>
                     {email.subject}
                     <br></br> <em>{email.from}</em>
@@ -22,6 +22,15 @@ class Emails extends React.Component {
                   <br></br>
                   {email.text.substring(0, 85)}
                   {"..."}
+                </Col>
+                <Col xs="1">
+                  {email.unread ? (
+                    <Badge className="unread-badge" pill>
+                      new
+                    </Badge>
+                  ) : (
+                    ""
+                  )}
                 </Col>
                 <Col xs="2">
                   <EmailModal email={email} />

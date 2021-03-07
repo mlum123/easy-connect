@@ -11,3 +11,9 @@
 .send-email-form {
   min-width: 760px;
 }
+
+.unread-badge {
+  background: #e05915 !important;
+  float: right;
+  min-height: 20px;
+}
