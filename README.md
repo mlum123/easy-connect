@@ -16,7 +16,7 @@ Through the Gmail API, Simply Connect also shows your most recent inbox emails a
 
 Furthermore, Simply Connect is integrated with GroupMe through the GroupMe API. You can view all of your GroupMe group chats and their latest messages, in addition to responding to GroupMe group chats directly from Simply Connect.
 
-I see so many possibilities for Simply Connect: we can integrate more APIs for different chatting and social media services to widen its range, allow users to choose which apps they want to integrate into Simply Connect, make Simply Connect into a Chrome Extension for even more convenient and easy access, and so much more.
+I see so many possibilities for Simply Connect: we can integrate more APIs for different chatting and social media services to broaden its range, allow users to choose which apps they want to integrate into Simply Connect, make Simply Connect into a Chrome Extension for even more convenient and easy access, and do so much more.
 
 Communicating virtually shouldn't be as hard as it is. Let's simply connect!
 
