@@ -1,5 +1,5 @@
 // GroupMeBox component displays GroupMe groups
-// contains GroupMeModal component with button to open group chat modal
+// contains GroupMeModal component with button to open modal displaying group chat
 
 import React from "react";
 import { ListGroupItem, Row, Col } from "reactstrap";

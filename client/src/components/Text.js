@@ -109,7 +109,7 @@ class Text extends React.Component {
                   name="phoneNum"
                   id="phoneNum"
                   value={text.recipient}
-                  placeholder="enter phone num, or type name above to retrieve number!"
+                  placeholder="enter phone number, or type name above to retrieve number!"
                   onChange={(e) =>
                     this.setState({
                       text: { ...text, recipient: e.target.value },

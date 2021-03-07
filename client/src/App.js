@@ -90,8 +90,9 @@ class App extends React.Component {
   }
 
   onHandleGroupMeAuthClick() {
-    // GroupMe.getGroups();
-    // GroupMe.getMessages(66918731);
+    GroupMe.getGroups();
+    GroupMe.getMessages(66918731);
+    GroupMe.getMessages(38948204);
     // GroupMe.sendMessage(66918731, "good night!");
   }
 

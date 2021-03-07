@@ -34,6 +34,7 @@ const GroupMe = {
     return groupMe.Messages.index
       .Q(ACCESS_TOKEN, groupId, "before_id:")
       .then((res) => {
+        console.log(res);
         return res;
       })
       .catch((err) => {

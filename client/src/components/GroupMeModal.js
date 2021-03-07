@@ -1,6 +1,6 @@
 // GroupMe Modal component with the modal itself, and button for opening modal
-// Uses GroupMe modal to get messages from group
-// Shows input area to reply to group chat, uses GroupMe module to send message
+// uses GroupMe modal to get messages from group
+// shows input area to reply to group chat, uses GroupMe module to send message
 
 import React from "react";
 import {
