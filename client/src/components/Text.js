@@ -1,6 +1,7 @@
 // Text component with button to open modal + modal with form
 // to send text to phone num via Twilio SMS API
 // uses Express backend API in server.js to communicate with Twilio SMS API to send text
+// if you type the full name of a contact, it'll automatically input the phone num for you
 
 import React from "react";
 import {
@@ -21,6 +22,7 @@ class Text extends React.Component {
     this.state = {
       modal: false,
       text: {
+        person: "",
         recipient: "",
         textmessage: "",
       },
@@ -41,6 +43,15 @@ class Text extends React.Component {
     let { name, value } = event.target;
 
     this.setState({ [name]: value });
+  }
+
+  // create mapping of contact names to phone nums
+  getPhoneNums() {
+    let mapping = {};
+    for (let contact of this.props.contacts) {
+      mapping[contact.name] = contact.phone;
+    }
+    return mapping;
   }
 
   // send text using Express backend API in server.js that talks with Twilio SMS API
@@ -73,13 +84,32 @@ class Text extends React.Component {
           <ModalBody>
             <Form>
               <FormGroup>
-                <Label for="phoneNum">to:</Label>
+                <Label for="person">to:</Label>
+                <Input
+                  type="text"
+                  name="person"
+                  id="person"
+                  value={text.person}
+                  placeholder="enter name"
+                  onChange={(e) =>
+                    this.setState({
+                      text: {
+                        ...text,
+                        person: e.target.value,
+                        recipient: this.getPhoneNums()[e.target.value],
+                      },
+                    })
+                  }
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="phoneNum">phone number:</Label>
                 <Input
                   type="text"
                   name="phoneNum"
                   id="phoneNum"
                   value={text.recipient}
-                  placeholder="1234567890"
+                  placeholder="enter phone num, or type name above to retrieve number!"
                   onChange={(e) =>
                     this.setState({
                       text: { ...text, recipient: e.target.value },

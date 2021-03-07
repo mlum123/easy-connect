@@ -29,7 +29,7 @@ class Contacts extends React.Component {
           <ListGroupItem className="header">
             <Row>
               <Col xs="4">contacts</Col>
-              <Text />
+              <Text contacts={this.props.contacts} />
             </Row>
             <Row>
               <Input

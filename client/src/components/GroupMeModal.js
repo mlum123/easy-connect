@@ -62,6 +62,9 @@ class GroupMeModal extends React.Component {
     });
   }
 
+  // once component mounts, get user name and put it in state
+  // that will help us differentiate between user's messages and people other than user's messages
+  // since we want to display those differently
   componentDidMount() {
     GroupMe.getUserInfo().then((res) => {
       this.setState({ userName: res.name });
