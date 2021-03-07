@@ -31,7 +31,7 @@ class Events extends React.Component {
   }
 
   render() {
-    return this.props.events.length > 0 ? (
+    return this.props.events !== undefined && this.props.events.length > 0 ? (
       <>
         {" "}
         {this.props.events.map((event) => {

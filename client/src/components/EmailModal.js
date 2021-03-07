@@ -45,7 +45,9 @@ class EmailModal extends React.Component {
   }
 
   // use Google module to send email
-  onSubmitForm() {
+  onSubmitForm(e) {
+    e.preventDefault();
+
     Google.sendEmail(this.state.to, this.state.subject, this.state.email);
 
     // close modal

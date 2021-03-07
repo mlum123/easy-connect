@@ -1,0 +1,10 @@
+.user-message {
+  margin: 0.5rem 0;
+  margin-left: 10rem;
+  margin-right: 0.4rem;
+  min-height: 2.5rem;
+  background: #e6e9f0;
+  border-radius: 5px;
+  text-align: left;
+  padding: 0.5rem 0.5rem;
+}

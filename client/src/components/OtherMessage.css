@@ -1,0 +1,14 @@
+.other-name {
+  font-size: 0.8rem;
+  margin: none;
+}
+
+.other-message {
+  margin-bottom: 0.5rem;
+  margin-right: 10rem;
+  min-height: 2.5rem;
+  background: #c2dde6;
+  border-radius: 5px;
+  text-align: left;
+  padding: 0.5rem 0.5rem;
+}

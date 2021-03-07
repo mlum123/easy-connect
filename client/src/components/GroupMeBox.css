@@ -1,0 +1,8 @@
+.groupme-modal {
+  min-width: 800px;
+}
+
+.messages {
+  height: 60vh;
+  overflow-y: scroll;
+}

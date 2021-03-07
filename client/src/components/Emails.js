@@ -7,7 +7,7 @@ import "./Emails.css";
 
 class Emails extends React.Component {
   render() {
-    return this.props.emails.length > 0 ? (
+    return this.props.emails !== undefined && this.props.emails.length > 0 ? (
       <>
         {" "}
         {this.props.emails.map((email) => {
@@ -20,7 +20,7 @@ class Emails extends React.Component {
                     <br></br> <em>{email.from}</em>
                   </strong>
                   <br></br>
-                  {email.text.substring(0, 85)}
+                  {email.text.substring(0, 80)}
                   {"..."}
                 </Col>
                 <Col xs="1">

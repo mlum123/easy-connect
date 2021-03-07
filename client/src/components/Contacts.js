@@ -3,16 +3,7 @@
 // can also filter contacts by name
 
 import React from "react";
-import {
-  ListGroup,
-  ListGroupItem,
-  Row,
-  Col,
-  Input,
-  Modal,
-  ModalHeader,
-  ModalBody,
-} from "reactstrap";
+import { ListGroup, ListGroupItem, Row, Col, Input } from "reactstrap";
 import Text from "./Text";
 import "./Contacts.css";
 
@@ -20,14 +11,8 @@ class Contacts extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, contactFilter: "" };
-    this.toggle = this.toggle.bind(this);
+    this.state = { contactFilter: "" };
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  // toggles whether send text (via Twilio SMS API) modal is open or not
-  toggle() {
-    this.setState({ modal: !this.state.modal });
   }
 
   // when any form input changes, re-set its state to new value
@@ -44,17 +29,7 @@ class Contacts extends React.Component {
           <ListGroupItem className="header">
             <Row>
               <Col xs="4">contacts</Col>
-              <Col xs="8">
-                <button className="custom-button" onClick={this.toggle}>
-                  text
-                </button>
-              </Col>
-              <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                <ModalHeader toggle={this.toggle}>send a text</ModalHeader>
-                <ModalBody>
-                  <Text />
-                </ModalBody>
-              </Modal>
+              <Text />
             </Row>
             <Row>
               <Input

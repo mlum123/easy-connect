@@ -21,8 +21,9 @@ h3 {
   font-style: italic;
 }
 
-.google-button {
+.auth-button {
   background-color: #e6e9f0;
+  width: 200px;
   border: none;
   padding: 0.5rem;
   float: right;
@@ -33,7 +34,7 @@ h3 {
   transition: 0.3s;
 }
 
-.google-button:hover {
+.auth-button:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
