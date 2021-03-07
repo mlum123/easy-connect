@@ -52,6 +52,7 @@ class GroupMeModal extends React.Component {
   }
 
   // use Google module to send email
+  // clear user input message after sending message
   onSubmitForm(e) {
     e.preventDefault();
 
@@ -59,6 +60,8 @@ class GroupMeModal extends React.Component {
       GroupMe.getMessages(this.props.group.id).then((res) => {
         this.setState({ messages: res.messages });
       });
+
+      this.setState({ message: "" });
     });
   }
 
@@ -101,6 +104,7 @@ class GroupMeModal extends React.Component {
                   type="text"
                   name="message"
                   placeholder={this.state.message}
+                  value={this.state.message}
                   id="message"
                   onChange={this.handleChange}
                 ></Input>

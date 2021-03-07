@@ -14,7 +14,7 @@ class App extends React.Component {
 
     this.state = {
       googleSignedIn: false,
-      groupMeSignedIn: false,
+      groupMeSignedIn: true,
       contacts: [],
       emails: [],
       events: [],
@@ -44,15 +44,10 @@ class App extends React.Component {
     Google.handleSignoutClick();
     this.setState({
       googleSignedIn: Google.signedIn,
-    });
-    /* TODO - clear state on sign out
-    this.setState({
-      googleSignedIn: Google.signedIn,
       contacts: [],
       emails: [],
       events: [],
     });
-    */
   }
 
   // call Google module function to use People API to get Google Contacts
@@ -121,6 +116,8 @@ class App extends React.Component {
       </button>
     );
 
+    // TODO - this button and onHandleGroupMeAuthClick function are just for testing purposes
+    // remove
     let groupMeAuthButton = (
       <button className="auth-button" onClick={this.onHandleGroupMeAuthClick}>
         sign into groupme
@@ -133,10 +130,10 @@ class App extends React.Component {
         <Col className="title">
           <Row>
             <Col xs="7">
-              <h1>easy connect</h1>
+              <h1>simply connect</h1>
             </Col>
             <Col xs="3">
-              <h3>talking made simple</h3>
+              <h3>talking made easy</h3>
             </Col>
             <Col xs="2">
               {!this.state.googleSignedIn ? googleAuthButton : null}
