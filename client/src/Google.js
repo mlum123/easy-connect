@@ -71,6 +71,7 @@ const Google = {
       .list({
         resourceName: "people/me",
         personFields: "names,emailAddresses,phoneNumbers",
+        sortOrder: "FIRST_NAME_ASCENDING",
       })
       .then((res) => {
         const contacts = res.result.connections;
@@ -100,16 +101,19 @@ const Google = {
         showDeleted: false,
         singleEvents: true,
         orderBy: "startTime",
+        maxResults: 10,
       })
       .then((res) => {
         const events = res.result.items;
 
         if (events.length > 0) {
           // use filter to only get Zoom and Google Meet events
+          // Google Meet events will have hangoutLink
+          // Zoom events will have location with Zoom link
           return events.filter((event, i) => {
-            let eventTime = event.start.dateTime;
-
-            return true;
+            return (
+              event.hangoutLink !== undefined || event.location !== undefined
+            );
           });
         } else {
           console.log("No upcoming events found.");

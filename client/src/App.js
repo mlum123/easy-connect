@@ -11,7 +11,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { googleSignedIn: false, contacts: [], emails: [] };
+    this.state = {
+      googleSignedIn: false,
+      contacts: [],
+      emails: [],
+      events: [],
+    };
 
     this.onHandleAuthClick = this.onHandleAuthClick.bind(this);
     this.onHandleSignoutClick = this.onHandleSignoutClick.bind(this);
@@ -24,15 +29,18 @@ class App extends React.Component {
     this.setState({ googleSignedIn: Google.signedIn });
     this.getContacts();
     this.getEmails();
+    this.getEvents();
   }
 
   // Google sign out button click event handler
+  // reset state contacts, emails, events to be empty
   onHandleSignoutClick() {
     Google.handleSignoutClick();
     this.setState({
       googleSignedIn: Google.signedIn,
       contacts: [],
       emails: [],
+      events: [],
     });
   }
 
@@ -52,6 +60,18 @@ class App extends React.Component {
     Google.getEmails()
       .then((emails) => {
         this.setState({ emails });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  // call Google module function to use Google Calendar API to get events
+  // (Google Meet and Zoom calls in particular)
+  getEvents() {
+    Google.getEvents()
+      .then((events) => {
+        this.setState({ events });
       })
       .catch((err) => {
         console.log(err);
@@ -107,9 +127,13 @@ class App extends React.Component {
         <Row>
           <Col xs="4">
             <Contacts contacts={this.state.contacts} />
+            <br></br>
           </Col>
           <Col xs="8">
-            <Accordion type="email" emails={this.state.emails} />
+            <Accordion type="emails" emails={this.state.emails} />
+            <br></br>
+            <Accordion type="upcoming events" events={this.state.events} />
+            <br></br>
           </Col>
         </Row>
       </div>
