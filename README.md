@@ -4,7 +4,7 @@
 
 #### SF Hacks 2021
 
-_Demo Video: BLANK_
+_Demo Video: https://www.youtube.com/watch?v=p_TVu2WjMtM_
 
 With many working and learning virtually due to the coronavirus pandemic, we're using more digital platforms than ever to stay connected — there's Zoom, Google Meet, email, texting, and GroupMe, among a plethora of other services. It can be confusing, time-consuming, and difficult to keep up to date on all of these apps, especially for those like the older generation who may not catch onto new technologies easily and are feeling the most isolated due to their vulnerability to COVID-19.
 
