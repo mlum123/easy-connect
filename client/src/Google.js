@@ -2,9 +2,8 @@
 // functions to view and edit user's Google Contacts using People API,
 // send emails using Gmail API,
 // view upcoming events using Google Calendar API
-const API_KEY = "AIzaSyDX-84f8_PZsHsUR65dmYBTaCBxwM7jYoI";
-const CLIENT_ID =
-  "337510426214-vr92q2qdgetu51134m3trr1oki5spdus.apps.googleusercontent.com";
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const DISCOVERY_DOCS = [
   "https://people.googleapis.com/$discovery/rest?version=v1",
   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
@@ -94,7 +93,6 @@ const Google = {
 
   // Use Google Calendar API to get upcoming Zoom and Google Meet events on user's Google Calendar
   getEvents() {
-    /*TODO - limit num of events */
     return gapi.client.calendar.events
       .list({
         calendarId: "primary",
@@ -129,7 +127,7 @@ const Google = {
       .list({
         userId: "me",
         labelIds: "INBOX",
-        maxResults: 5,
+        maxResults: 4,
       })
       .then((res) => {
         const messages = res;
