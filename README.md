@@ -6,7 +6,7 @@
 
 _Demo Video: BLANK_
 
-With many working and learning virtually due to the coronavirus pandemic, we're using more digital platforms than ever to stay connected — there's Zoom, Google Meet, texting, and GroupMe, among a plethora of other services. It can be confusing, time-consuming, and difficult to keep up to date on all of these apps, especially for those like the older generation who may not catch onto new technologies easily and are feeling the most isolated due to their vulnerability to COVID-19.
+With many working and learning virtually due to the coronavirus pandemic, we're using more digital platforms than ever to stay connected — there's Zoom, Google Meet, email, texting, and GroupMe, among a plethora of other services. It can be confusing, time-consuming, and difficult to keep up to date on all of these apps, especially for those like the older generation who may not catch onto new technologies easily and are feeling the most isolated due to their vulnerability to COVID-19.
 
 That's where Simply Connect comes in: Simply Connect is a web application made with React and Express for SF Hacks 2021, and it's a one-stop communications hub for all your digital platforms. Simply Connect uses OAuth2.0 authentication to allow users to sign in via their Google accounts, giving Simply Connect access to their Google Contacts, Gmail emails, and Google Calendars.
 
